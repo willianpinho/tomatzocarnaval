@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
 from flask_oauth import OAuth
-from flask.ext.session import Session
 
 SECRET_KEY = '5\x07\x0bO\x84\x0c\x99\x8b\xf7\xf8\xbd \xce\xd3\xd9\xfa\x16\x19)\x89\x01\xc7W6'
 DEBUG = True
@@ -15,8 +14,6 @@ app = Flask(__name__)
 app.debug = DEBUG
 app.secret_key = SECRET_KEY
 oauth = OAuth()
-SESSION_TYPE = 'redis'
-Session(app)
 
 #----------------------------------------
 # facebook authentication
@@ -99,7 +96,7 @@ def sucess():
 def test():
   return render_template('test.html')
 
-@app.route('/set/')
+@app.route('/set')
 def set():
     session['key'] = 'value'
     return 'ok'
