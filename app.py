@@ -113,6 +113,4 @@ def get():
 #----------------------------------------
 
 if __name__ == '__main__':
-  sess = Session()
-  sess.init_app(app)
   app.run()
