@@ -31,6 +31,12 @@ class User(db.Model):
     email = db.Column(db.String(120))
     logged = db.Column(db.String(120))
     facebook_token = db.Column(db.String(120))
+    sexta = db.Column(db.String(120))
+    sabado = db.Column(db.String(120))
+    domingo = db.Column(db.String(120))
+    segunda = db.Column(db.String(120))
+    terca = db.Column(db.String(120))
+
 
     def __repr__(self):
         return '<User %r>' % (self.facebook_id)
