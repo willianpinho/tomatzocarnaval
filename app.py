@@ -13,13 +13,8 @@ FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
 # initialization
 #----------------------------------------
 app = Flask(__name__)
-app.debug = DEBUG
-app.secret_key = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
-db.create_all()
-db.session.commit()
-oauth = OAuth()
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 #----------------------------------------
 # User Table
@@ -40,6 +35,15 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.facebook_id)
 
+
+#----------------------------------------
+# initializations
+#----------------------------------------
+app.debug = DEBUG
+app.secret_key = SECRET_KEY
+db.create_all()
+db.session.commit()
+oauth = OAuth()
 
 #----------------------------------------
 # facebook authentication
