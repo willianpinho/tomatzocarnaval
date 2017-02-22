@@ -136,9 +136,9 @@ def page_not_found(e):
 @app.route('/generate/<email>')
 def generate(email):
     session['email'] = email
-    return render_template('generate.html')
+    return render_template('generate.html', email=email)
 
-@app.route('/create_calendar', methods=['GET', 'POST'])
+@app.route('/create_calendar/<email>', methods=['GET', 'POST'])
 def create_calendar():
     if request.method == 'POST':
         currentusermail = request.args.get('email')
