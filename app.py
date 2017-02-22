@@ -11,6 +11,7 @@ FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
 # initialization
 #----------------------------------------
 app = Flask(__name__)
+app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 
@@ -165,5 +166,4 @@ def test():
 #----------------------------------------
 
 if __name__ == '__main__':
-    app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
     app.run()
