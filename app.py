@@ -148,7 +148,7 @@ def create_calendar():
         user.segunda = request.form['segunda']
         user.terca = request.form['terca']
         db.session.commit()
-        return redirect(url_for('sucess'))
+        return redirect(url_for('generate_image'))
     else:
         return render_template('generate.html')
  
@@ -157,9 +157,10 @@ def create_calendar():
 def sucess():
   return render_template('sucess.html')
 
-@app.route('/image_test')
-def test():
-  return render_template('test.html')
+@app.route('/generate_image')
+def generate_image():
+    print("Oi")
+    return redirect(url_for('sucess'))
 
 #----------------------------------------
 # launch
