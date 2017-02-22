@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #----------------------------------------
 # User Table
 #----------------------------------------
@@ -141,6 +141,7 @@ def create_calendar():
     if request.method == 'POST':
         if 'email' in session:
             useremail = session['email']
+            print(useremail)
             print("With Session")
         else: 
             print("No session")     
