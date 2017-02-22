@@ -145,7 +145,7 @@ def create_calendar():
         user = User.query.filter_by(email=currentusermail).first()
 
         result = request.form
-        user.sexta = request.form['sexta']
+        user.sexta = result['sexta']
         user.sabado = request.form['sabado']
         user.domingo = request.form['domingo']
         user.segunda = request.form['segunda']
