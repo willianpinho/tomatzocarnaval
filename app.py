@@ -139,13 +139,13 @@ def generate(email):
 
 @app.route('/createCalendar', methods=['POST'])
 def addCalendar():
-  user = User.query.filter_by(email='email').first()
-  user.sexta = request.form['sexta']
-  user.sabado = request.form['sabado']
-  user.domingo = request.form['domingo']
-  user.segunda = request.form['segunda']
-  user.terca = request.form['terca']
-  db.session.commit()
+  # user = User.query.filter_by(email='email').first()
+  # user.sexta = request.form['sexta']
+  # user.sabado = request.form['sabado']
+  # user.domingo = request.form['domingo']
+  # user.segunda = request.form['segunda']
+  # user.terca = request.form['terca']
+  # db.session.commit()
   return redirect(url_for('sucess'))
  
 
