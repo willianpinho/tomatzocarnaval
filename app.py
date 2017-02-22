@@ -60,7 +60,13 @@ def facebook_authorized(resp):
 def get_facebook_oauth_token():
     return session.get('oauth_token')
 
+def pop_login_session():
+    session.pop('oauth_token', None)
 
+@app.route("/logout")
+def logout():
+    pop_login_session()
+    return redirect(url_for('index'))
 
 @app.route('/favicon.ico')
 def favicon():
