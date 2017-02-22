@@ -76,11 +76,11 @@
                       <div class="col-md-6 col-md-offset-3">
                       <h4> <strong>Blocos e Festas em Ordem Alfabética</strong></h4>
                       
-                      <form role="form" method="post" action="/createCalendar" id="calendar">
+                      <form role="form" method="post" action="{{ url_for('create_calendar') }}" id="calendar">
                       
                       <div class="form-group ">
                         <h5 style="text-align: left">Sexta-Feira:</h5>
-                        <select name="sexta" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
+                        <select id="sexta" name="sexta" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
                             <option value="BLOCO DO NETFLIX - EM CASA">BLOCO DO NETFLIX - EM CASA</option>
                             <option value="BLOCO LIBRE! - MUSEU DA REP">BLOCO LIBRE! - MUSEU DA REP</option>
                             <option value="CARNAVAL NO PARQUE DA CIDADE">CARNAVAL NO PARQUE DA CIDADE</option>
@@ -88,7 +88,7 @@
                             <option value="REJUNTA MEU BULCAO - 201 NORTE">REJUNTA MEU BULCAO - 201 NORTE</option>
                         </select>
                         <h5 style="text-align: left">Sábado:</h5>
-                        <select name="sabado" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
+                        <select id="sabado" name="sabado" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
                             <option value="ASE DUDU - PRACA DO DI">ASE DUDU - PRACA DO DI</option>
                             <option value="BABYDOLL DE NYLON - PRACA DO CRUZEIRO">BABYDOLL DE NYLON - PRACA DO CRUZEIRO</option>
                             <option value="BEM MEB - SCS">BEM MEB - SCS</option>
@@ -103,7 +103,7 @@
                             <option value="SANTO PECADO - ORLA PONTE JK">SANTO PECADO - ORLA PONTE JK</option>
                         </select>
                         <h5 style="text-align: left">Domingo:</h5>
-                        <select name="domingo" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
+                        <select id="domingo" name="domingo" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
                             <option value="5UINTO BLOCO - CONIC">5UINTO BLOCO - CONIC</option>
                             <option value="AGONIZA MAS NAO MORRE - 313 S">AGONIZA MAS NAO MORRE - 313 S</option>
                             <option value="BARATINHA - PARQUE DA CIDADE">BARATINHA - PARQUE DA CIDADE</option>
@@ -119,7 +119,7 @@
                             <option value="RAPARIGUEIROS - EIXAO SUL">RAPARIGUEIROS - EIXAO SUL</option>
                         </select>
                         <h5 style="text-align: left">Segunda-Feira:</h5>
-                        <select name="segunda" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
+                        <select id="segunda" name="segunda" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
                             <option value="5UINTO BLOCO - CONIC">5UINTO BLOCO - CONIC</option>
                             <option value="APARELHINHO - SBS ">APARELHINHO - SBS </option>
                             <option value="ASE DUDU - PRACA DO DI">ASE DUDU - PRACA DO DI</option>
@@ -134,7 +134,7 @@
                             <option value="URUBLOCO - SBS">URUBLOCO - SBS</option>
                         </select>
                         <h5 style="text-align: left">Terça-Feira:</h5>
-                        <select name="terca" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
+                        <select id="terca" name="terca" class="full-width select2-hidden-accessible" data-init-plugin="select2" tabindex="-1" aria-hidden="true">
                             <option value="BARATINHA - PARQUE DA CIDADE">BARATINHA - PARQUE DA CIDADE</option>
                             <option value="BARATONA - EIXAO SUL">BARATONA - EIXAO SUL</option>
                             <option value="BLOCO DO NETFLIX - EM CASA">BLOCO DO NETFLIX - EM CASA</option>

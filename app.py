@@ -138,16 +138,16 @@ def generate(email):
     session['email'] = email
     return render_template('generate.html')
 
-@app.route('/createCalendar', methods=['GET', 'POST'])
+@app.route('/create_calendar', methods=['GET', 'POST'])
 def addCalendar():
     if request.method == 'POST':
         currentusermail = request.args.get('email')
         user = User.query.filter_by(email=currentusermail).first()
-        user.sexta = request.form['sexta']
+        user.sexta = request.form.get('sexta')
         user.sabado = request.form['sabado']
-        user.domingo = request.form['domingo']
-        user.segunda = request.form['segunda']
-        user.terca = request.form['terca']
+        user.domingo = request.form.get('domingo')
+        user.segunda = request.form.get('segunda')
+        user.terca = request.form.get('terca')
         db.session.commit()
         return redirect(url_for('sucess'))
     else:
