@@ -76,10 +76,10 @@ def facebook_authorized(resp):
     session['facebook_token'] = (resp['access_token'], '')
 
     me = facebook.get('me?fields=name,picture')
-    session['username'] = 'Willian'
-    # session['id'] = (me['id'])
-    # session['name'] = (me['name'])
-
+ 
+    user = User('me.data['name']', 'willjrpp@gmail.com')
+    db.session.add(user)
+    db.session.commit()
     return 'Logged in as id=%s name=%s redirect=%s' % \
         (me.data['id'], me.data['name'],request.args.get('next'))
 
