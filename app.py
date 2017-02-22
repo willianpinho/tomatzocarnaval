@@ -139,12 +139,9 @@ def generate(email):
 @app.route('/create_calendar', methods=['GET', 'POST'])
 def create_calendar():
     if request.method == 'POST':
-        if 'email' in session:
-            useremail = session['email']
-            print(useremail)
-            print("With Session")
-        else: 
-            print("No session")     
+        me = facebook.get('me?fields=id,name,picture.height(300),email')   
+        email = me.data['email']
+        print(email)
         
         currentusermail = request.args.get('email')
         user = User.query.filter_by(email=currentusermail).first()
