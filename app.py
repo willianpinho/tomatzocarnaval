@@ -3,8 +3,6 @@ from flask import Flask, render_template, send_from_directory, url_for, session,
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
 
-
-SECRET_KEY = '5\x07\x0bO\x84\x0c\x99\x8b\xf7\xf8\xbd \xce\xd3\xd9\xfa\x16\x19)\x89\x01\xc7W6'
 DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
 FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
@@ -45,7 +43,6 @@ class User(db.Model):
 # initializations
 #----------------------------------------
 app.debug = DEBUG
-app.secret_key = SECRET_KEY
 db.create_all()
 db.session.commit()
 oauth = OAuth()
@@ -168,4 +165,5 @@ def test():
 #----------------------------------------
 
 if __name__ == '__main__':
-  app.run()
+    app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
+    app.run()
