@@ -142,7 +142,7 @@ def generate(email):
 def addCalendar():
     if request.method == 'POST':
         email = session['email']
-        user = User.query.filter_by(email).first()
+        user = User.query.filter_by(User.email == email).first()
         print user
         # user.sexta = request.form['sexta']
         # user.sabado = request.form['sabado']
