@@ -75,7 +75,8 @@ def index():
 
 @app.route('/login', methods=['POST'])
 def login():
-    return facebook.authorize(callback=url_for('facebook_authorized',
+    if request.method == 'POST':
+      return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
         _external=True))
 
