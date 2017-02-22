@@ -51,7 +51,8 @@ def facebook_authorized(resp):
             request.args['error_reason'],
             request.args['error_description']
         )
-    session['oauth_token'] = (resp['access_token'], '')
+    session['logged_in'] = True
+    session['facebook_token'] = (resp['access_token'], '')
 
     me = facebook.get('me?fields=name,picture')
     session['username'] = 'Willian'
@@ -63,10 +64,11 @@ def facebook_authorized(resp):
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
-    return session.get('oauth_token')
+    return session.get('facebook_token')
 
 def pop_login_session():
-    session.pop('oauth_token', None)
+    session.pop('logged_in', None)
+    session.pop('facebook_token', None)
 
 @app.route("/logout")
 def logout():
