@@ -1,12 +1,15 @@
 click==6.7
 facebook-sdk==2.0.0
 Flask==0.12
+Flask-OAuth==0.12
 Flask-OAuthlib==0.9.3
 Flask-thumbnails==0.2.1
 gunicorn==19.6.0
+httplib2==0.10.3
 itsdangerous==0.24
 Jinja2==2.9.5
 MarkupSafe==0.23
+oauth2==1.9.0.post1
 oauthlib==2.0.1
 Pillow==2.6.0
 requests==2.13.0
