@@ -51,8 +51,10 @@ def facebook_authorized(resp):
             request.args['error_reason'],
             request.args['error_description']
         )
-    session['oauth_token'] = (resp['access_token'], '')
+    Session['oauth_token'] = (resp['access_token'], '')
+
     me = facebook.get('me?fields=picture.height(300),name')
+    Session['username'] = 'Willian'
     # session['id'] = (me['id'])
     # session['name'] = (me['name'])
 
