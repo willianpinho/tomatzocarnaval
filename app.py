@@ -89,7 +89,7 @@ def facebook_authorized(resp):
     session['logged_in'] = True
     session['facebook_token'] = (resp['access_token'], '')
 
-    me = facebook.get('me?fields=name,picture')
+    me = facebook.get('me?fields=id,name,picture,email')
 
     name = me.data['name']
     facebook_id = me.data['id']
