@@ -93,7 +93,7 @@ def facebook_authorized(resp):
 
     name = me.data['name']
     facebook_id = me.data['id']
-    facebook_img = me.data['picture']['url']
+    facebook_img = me.data['picture']['data']['url']
     email = me.data['email']
     logged = 'true'
     facebook_token = resp['access_token']
