@@ -17,23 +17,28 @@ app.debug = DEBUG
 app.secret_key = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+db.create_all()
+db.session.commit()
 oauth = OAuth()
 
 #----------------------------------------
 # User Table
 #----------------------------------------
 from app import db
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    email = db.Column(db.String(120), unique=True)
 
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
+class User(db.Model):
+    __tablename__ = "user"
+    __table_args__ = {'extend_existing': True} 
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    facebook_id = db.Column(db.String(64))
+    facebook_img = db.Column(db.String(120))
+    email = db.Column(db.String(120))
+    logged = db.Column(db.String(120))
+    facebook_token = db.Column(db.String(120))
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '<User %r>' % (self.facebook_id)
 
 
 #----------------------------------------
@@ -76,9 +81,13 @@ def facebook_authorized(resp):
     session['facebook_token'] = (resp['access_token'], '')
 
     me = facebook.get('me?fields=name,picture')
- 
-    user = User('Willian', 'willjrpp@gmail.com')
+
+    name = me.data['name']
+    facebook_id = me.data['id']
+
+    user = User(name= name, facebook_id=facebook_id)
     db.session.add(user)
+    
     db.session.commit()
     return 'Logged in as id=%s name=%s redirect=%s' % \
         (me.data['id'], me.data['name'],request.args.get('next'))
@@ -122,5 +131,4 @@ def test():
 #----------------------------------------
 
 if __name__ == '__main__':
-  db.create_all()
   app.run()
