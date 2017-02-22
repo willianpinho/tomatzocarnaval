@@ -134,7 +134,7 @@ def page_not_found(e):
 
 
 @app.route('/generate/<email>')
-def generate(email):
+def generate():
     session['email'] = email
     return render_template('generate.html')
 
