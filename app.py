@@ -145,13 +145,14 @@ def create_calendar():
         user = User.query.filter_by(email=currentusermail).first()
 
         result = request.form
-        user.sexta = result['sexta']
-        user.sabado = request.form['sabado']
-        user.domingo = request.form['domingo']
-        user.segunda = request.form['segunda']
-        user.terca = request.form['terca']
-        db.session.commit()
-        return redirect(url_for('sucess'))
+        # user.sexta = result['sexta']
+        # user.sabado = request.form['sabado']
+        # user.domingo = request.form['domingo']
+        # user.segunda = request.form['segunda']
+        # user.terca = request.form['terca']
+        # db.session.commit()
+        # return redirect(url_for('sucess'))
+        return result
     else:
         return render_template('generate.html')
  
