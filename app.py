@@ -109,7 +109,7 @@ def facebook_authorized(resp):
 
     session['email'] = email
 
-    return redirect(url_for('generate'))
+    return redirect(url_for('generate', email=email))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
@@ -133,8 +133,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.route('/generate')
-def generate():
+@app.route('/generate/<email>')
+def generate(email):
     return render_template('generate.html')
  
 @app.route('/sucess')
