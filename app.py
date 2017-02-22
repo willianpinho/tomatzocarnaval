@@ -141,9 +141,14 @@ def generate(email):
 @app.route('/create_calendar', methods=['GET', 'POST'])
 def create_calendar():
     if request.method == 'POST':
+        if 'email' in session:
+            useremail = session['email']
+            print useremail
+        else: 
+            print("No session")     
+        
         currentusermail = request.args.get('email')
         user = User.query.filter_by(email=currentusermail).first()
-
         print(user)
         return redirect(url_for('sucess'))
     else:
