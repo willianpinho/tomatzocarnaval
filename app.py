@@ -25,17 +25,17 @@ class User(db.Model):
     __tablename__ = "user"
     __table_args__ = {'extend_existing': True} 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64))
-    facebook_id = db.Column(db.String(64))
-    facebook_img = db.Column(db.String(120))
-    email = db.Column(db.String(120))
-    logged = db.Column(db.String(120))
-    facebook_token = db.Column(db.String(120))
-    sexta = db.Column(db.String(120))
-    sabado = db.Column(db.String(120))
-    domingo = db.Column(db.String(120))
-    segunda = db.Column(db.String(120))
-    terca = db.Column(db.String(120))
+    name = db.Column(db.String(200))
+    facebook_id = db.Column(db.String(200))
+    facebook_img = db.Column(db.String(200))
+    email = db.Column(db.String(200))
+    logged = db.Column(db.String(200))
+    facebook_token = db.Column(db.String(200))
+    sexta = db.Column(db.String(200))
+    sabado = db.Column(db.String(200))
+    domingo = db.Column(db.String(200))
+    segunda = db.Column(db.String(200))
+    terca = db.Column(db.String(200))
 
     def __repr__(self):
         return '<User %r>' % (self.facebook_id)
