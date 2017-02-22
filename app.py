@@ -102,10 +102,10 @@ def facebook_authorized(resp):
     segunda = ''
     terca = ''
 
-    user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
-    db.session.add(user)
-    
-    db.session.commit()
+    if not db.session.query(User).filter(User.email == email).count():
+      user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
+      db.session.add(user)
+      db.session.commit()
 
     session['email'] = email
 
@@ -136,9 +136,23 @@ def page_not_found(e):
 @app.route('/generate/<email>')
 def generate(email):
     return render_template('generate.html')
+
+@app.route('/createCalendar')
+def addCalendar():
+
+  return redirect(url_for('sucess'))
  
-@app.route('/sucess')
+
+@app.route('/sucess', methods=['POST'])
 def sucess():
+  if request.method == 'POST'
+    user = User.query.filter_by(email='email').first()
+    user.sexta = request.form['sexta']
+    user.sabado = request.form['sabado']
+    user.domingo = request.form['domingo']
+    user.segunda = request.form['segunda']
+    user.terca = request.form['terca']
+    db.session.commit()
   return render_template('sucess.html')
 
 @app.route('/image_test')
