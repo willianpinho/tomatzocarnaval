@@ -53,8 +53,8 @@ def facebook_authorized(resp):
         )
     session['oauth_token'] = (resp['access_token'], '')
     me = facebook.get('me?fields=picture.height(300),name')
-    return 'Logged in as id=%s name=%s url=%s edirect=%s' % \
-        (me.data['id'], me.data['name'], me['picture']['data']['url'],request.args.get('next'))
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'],request.args.get('next'))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
