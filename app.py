@@ -96,15 +96,6 @@ def sucess():
 def test():
   return render_template('test.html')
 
-@app.route('/set')
-def set():
-    session['key'] = 'value'
-    return 'ok'
-
-@app.route('/get/')
-def get():
-    return session.get('key', 'not set')
-
 #----------------------------------------
 # launch
 #----------------------------------------
