@@ -37,7 +37,6 @@ class User(db.Model):
     segunda = db.Column(db.String(120))
     terca = db.Column(db.String(120))
 
-
     def __repr__(self):
         return '<User %r>' % (self.facebook_id)
 
@@ -94,6 +93,15 @@ def facebook_authorized(resp):
 
     name = me.data['name']
     facebook_id = me.data['id']
+    facebook_img = me.data['picture']
+    email = me.data['email']
+    logged = 'true'
+    facebook_token = (resp['access_token'], '')
+    sexta = ''
+    sabado = ''
+    domingo = ''
+    segunda = ''
+    terca = ''
 
     user = User(name= name, facebook_id=facebook_id)
     db.session.add(user)
