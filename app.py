@@ -141,7 +141,7 @@ def create_calendar():
     if request.method == 'POST':
         if 'email' in session:
             useremail = session['email']
-            print useremail
+            print("With Session")
         else: 
             print("No session")     
         
