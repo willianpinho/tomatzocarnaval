@@ -139,10 +139,9 @@ def generate(email):
     return render_template('generate.html', email=email)
 
 @app.route('/create_calendar/<email>', methods=['GET', 'POST'])
-def create_calendar():
+def create_calendar(email):
     if request.method == 'POST':
-        currentusermail = request.args.get('email')
-        user = User.query.filter_by(email=currentusermail).first()
+        user = User.query.filter_by(email=email).first()
 
         print(user)
         return redirect(url_for('sucess'))
