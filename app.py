@@ -93,10 +93,10 @@ def facebook_authorized(resp):
 
     name = me.data['name']
     facebook_id = me.data['id']
-    facebook_img = me.data['picture']
+    facebook_img = me.data['picture']['url']
     email = me.data['email']
     logged = 'true'
-    facebook_token = (resp['access_token'], '')
+    facebook_token = resp['access_token']
     sexta = ''
     sabado = ''
     domingo = ''
