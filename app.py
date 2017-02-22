@@ -103,7 +103,7 @@ def facebook_authorized(resp):
     segunda = ''
     terca = ''
 
-    user = User(name= name, facebook_id=facebook_id)
+    user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
     db.session.add(user)
     
     db.session.commit()
