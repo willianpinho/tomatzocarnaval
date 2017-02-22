@@ -142,7 +142,8 @@ def create_calendar():
         me = facebook.get('me?fields=id,name,picture.height(300),email')   
         email = me.data['email']
         user = User.query.filter_by(email=email).first()
-        print(user)
+        user.sexta = request.form['sexta']
+        db.session.commit()
         return redirect(url_for('sucess'))
     else:
         return render_template('generate.html')
