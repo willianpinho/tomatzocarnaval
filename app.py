@@ -90,7 +90,6 @@ def facebook_authorized(resp):
     session['facebook_token'] = (resp['access_token'], '')
 
     me = facebook.get('me?fields=id,name,picture,email')
-
     name = me.data['name']
     facebook_id = me.data['id']
     facebook_img = me.data['picture']['data']['url']
@@ -107,6 +106,9 @@ def facebook_authorized(resp):
     db.session.add(user)
     
     db.session.commit()
+
+    session['email'] = email
+
     return redirect(url_for('generate'))
 
 @facebook.tokengetter
