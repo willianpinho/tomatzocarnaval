@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
 from flask_oauth import OAuth
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 
 SECRET_KEY = '5\x07\x0bO\x84\x0c\x99\x8b\xf7\xf8\xbd \xce\xd3\xd9\xfa\x16\x19)\x89\x01\xc7W6'
