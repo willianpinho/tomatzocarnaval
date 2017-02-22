@@ -141,8 +141,8 @@ def generate(email):
 @app.route('/createCalendar', methods=['GET', 'POST'])
 def addCalendar():
     if request.method == 'POST':
-        email = session['email']
-        user = User.query.filter_by(User.email == email).first()
+        currentusermail = request.args.get('email')
+        user = User.query.filter_by(email == currentusermail).first()
         print user
         # user.sexta = request.form['sexta']
         # user.sabado = request.form['sabado']
