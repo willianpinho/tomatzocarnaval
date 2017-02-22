@@ -142,7 +142,7 @@ def generate(email):
 def create_calendar():
     if request.method == 'POST':
         currentusermail = request.args.get('email')
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=currentusermail).first()
 
         print(user)
         return redirect(url_for('sucess'))
