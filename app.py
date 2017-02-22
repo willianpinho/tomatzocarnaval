@@ -52,7 +52,7 @@ def facebook_authorized(resp):
             request.args['error_description']
         )
     session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
+    me = facebook.get('me?fields=picture.height(300)')
     return 'Logged in as id=%s name=%s redirect=%s' % \
         (me.data['id'], me.data['name'], request.args.get('next'))
 
