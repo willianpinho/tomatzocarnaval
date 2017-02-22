@@ -141,10 +141,7 @@ def create_calendar():
     if request.method == 'POST':
         me = facebook.get('me?fields=id,name,picture.height(300),email')   
         email = me.data['email']
-        print(email)
-        
-        currentusermail = request.args.get('email')
-        user = User.query.filter_by(email=currentusermail).first()
+        user = User.query.filter_by(email=email).first()
         print(user)
         return redirect(url_for('sucess'))
     else:
