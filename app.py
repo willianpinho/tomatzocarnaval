@@ -77,7 +77,7 @@ def facebook_authorized(resp):
 
     me = facebook.get('me?fields=name,picture')
  
-    user = User(me.data['name'], 'willjrpp@gmail.com')
+    user = User('Willian', 'willjrpp@gmail.com')
     db.session.add(user)
     db.session.commit()
     return 'Logged in as id=%s name=%s redirect=%s' % \
