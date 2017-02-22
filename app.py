@@ -135,11 +135,15 @@ def page_not_found(e):
 
 @app.route('/generate/<email>')
 def generate(email):
+    sesstion['email'] = email
     return render_template('generate.html')
 
 @app.route('/createCalendar', methods=['POST'])
 def addCalendar():
-  # user = User.query.filter_by(email='email').first()
+  if request.method = 'POST':
+    email = session['email']
+    user = User.query.filter_by(email).first()
+    print user
   # user.sexta = request.form['sexta']
   # user.sabado = request.form['sabado']
   # user.domingo = request.form['domingo']
