@@ -137,22 +137,20 @@ def page_not_found(e):
 def generate(email):
     return render_template('generate.html')
 
-@app.route('/createCalendar')
+@app.route('/createCalendar', methods=['POST'])
 def addCalendar():
-
+  user = User.query.filter_by(email='email').first()
+  user.sexta = request.form['sexta']
+  user.sabado = request.form['sabado']
+  user.domingo = request.form['domingo']
+  user.segunda = request.form['segunda']
+  user.terca = request.form['terca']
+  db.session.commit()
   return redirect(url_for('sucess'))
  
 
-@app.route('/sucess', methods=['POST'])
+@app.route('/sucess')
 def sucess():
-  if request.method == 'POST'
-    user = User.query.filter_by(email='email').first()
-    user.sexta = request.form['sexta']
-    user.sabado = request.form['sabado']
-    user.domingo = request.form['domingo']
-    user.segunda = request.form['segunda']
-    user.terca = request.form['terca']
-    db.session.commit()
   return render_template('sucess.html')
 
 @app.route('/image_test')
