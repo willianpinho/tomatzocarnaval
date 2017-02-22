@@ -14,7 +14,7 @@ FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
 #----------------------------------------
 app = Flask(__name__)
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 
 #----------------------------------------
 # User Table
