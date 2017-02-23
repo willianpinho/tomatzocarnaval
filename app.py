@@ -26,7 +26,6 @@ db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-s3 = boto3.resource('s3')
 #----------------------------------------
 # User Table
 #----------------------------------------
@@ -180,7 +179,7 @@ def generate_image():
     draw = ImageDraw.Draw(background)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
     draw.text((220, 325), user.segunda ,(0,0,0),font=font)
-    
+
     background.save('static/sample-out.png')
 
     return redirect(url_for('sucess'))
