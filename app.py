@@ -6,6 +6,8 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from PIL import ImageOps
+from flask_boto3 import Boto3
+
 
 DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
@@ -19,6 +21,9 @@ app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+boto_flask = Boto3(app)
+
 #----------------------------------------
 # User Table
 #----------------------------------------
@@ -171,12 +176,12 @@ def generate_image():
     background = Image.open('static/img/fundo_carna_tomatzo.png')
     draw = ImageDraw.Draw(background)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
-
     draw.text((220, 325), user.segunda ,(0,0,0),font=font)
-    if not os.path.exists('generated'):
-        os.makedirs('generated')
 
-    background.save('/generated/sample-out.png', 'PNG')  
+
+    s3 = boto3.resource('s3')
+    for bucket in s3.buckets.all():
+            print(bucket.name)
 
     return redirect(url_for('sucess'))
 
