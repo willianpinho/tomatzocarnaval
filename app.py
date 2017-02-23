@@ -6,7 +6,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from PIL import ImageOps
-from flask_boto3 import Boto3
+import Boto3
 
 
 DEBUG = True
@@ -22,8 +22,7 @@ db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-boto_flask = Boto3(app)
-
+s3 = boto3.resource('s3')
 #----------------------------------------
 # User Table
 #----------------------------------------
@@ -178,8 +177,6 @@ def generate_image():
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
     draw.text((220, 325), user.segunda ,(0,0,0),font=font)
 
-
-    s3 = boto3.resource('s3')
     for bucket in s3.buckets.all():
             print(bucket.name)
 
