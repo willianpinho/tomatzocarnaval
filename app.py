@@ -86,11 +86,16 @@ facebook = oauth.remote_app('facebook',
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return facebook.authorize(callback=url_for('facebook_authorized',
+    if request.method == 'POST':
+        return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
         _external=True))
+    else:
+        return render_template('index.html')
+
+
 
 @app.route('/login/authorized')
 @facebook.authorized_handler
