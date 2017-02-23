@@ -166,8 +166,8 @@ def create_calendar():
         user.segunda = request.form['segunda']
         user.terca = request.form['terca']
         db.session.commit()
-
-        return redirect(url_for('sucess'))
+        facebook_id = user.facebook_id
+        return redirect(url_for('sucess', facebook_id=facebook_id))
     else:
         return render_template('generate.html')
  
@@ -226,8 +226,8 @@ def create(facebook_id):
 
     return send_file(byte_io, mimetype='image/png')
 
-@app.route('/sucess')
-def sucess():
+@app.route('/sucess/<facebook_id>')
+def sucess(facebook_id):
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
     email = me.data['email']
     user = User.query.filter_by(email=email).first()
