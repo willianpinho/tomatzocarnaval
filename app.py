@@ -164,11 +164,10 @@ def create_calendar():
         user.segunda = request.form['segunda']
         user.terca = request.form['terca']
         db.session.commit()
-        return redirect(url_for('create'))
+        return redirect(url_for('sucess'))
     else:
         return render_template('generate.html')
  
-@app.route('/create')
 def create():
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
     email = me.data['email']
@@ -225,7 +224,8 @@ def create():
 
 @app.route('/sucess')
 def sucess():
-    return render_template('sucess.html')
+    image = create()
+    return render_template('sucess.html', image=image)
 
 
 #----------------------------------------

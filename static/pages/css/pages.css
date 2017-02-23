@@ -3100,8 +3100,8 @@ fieldset[disabled] .btn-complete.active {
 .btn-info:active:focus,
 .btn-info:active:hover,
 .open .dropdown-toggle.btn-info {
-  background-color: #833ab4;
-  border-color: #833ab4;
+  background-color: #3b5998;
+  border-color: #3b5998;
   color: #fff;
 }
 .btn-info.hover,
