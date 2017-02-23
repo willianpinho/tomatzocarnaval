@@ -165,7 +165,6 @@ def create_calendar():
         user.terca = request.form['terca']
         db.session.commit()
 
-        facebook_id = user.facebook_id
         return redirect(url_for('sucess'))
     else:
         return render_template('generate.html')
@@ -227,7 +226,12 @@ def create(facebook_id):
 
 @app.route('/sucess')
 def sucess():
-    return render_template('sucess.html')
+    me = facebook.get('me?fields=id,name,picture.height(300),email') 
+    email = me.data['email']
+    user = User.query.filter_by(email=email).first()
+    src = 'http://www.tomatzocarnaval.com/create/' + user.facebook_id + '.png'
+
+    return render_template('sucess.html', src=src)
 
 
 #----------------------------------------
