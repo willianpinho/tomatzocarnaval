@@ -13,6 +13,12 @@ DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
 FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
 
+BUCKET_NAME = 'bucketeer-a0950fe0-0534-45c0-a578-24cdfe574b12'
+REGION = 'us-east-1'
+ACCESS_KEY = 'AKIAI6OMT5QF3D3K74YA'
+SECRET_ACCESS_KEY = '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'
+PUBLIC_URL = 'https://bucketeer-a0950fe0-0534-45c0-a578-24cdfe574b12.s3.amazonaws.com/public/'
+
 #----------------------------------------
 # initialization
 #----------------------------------------
