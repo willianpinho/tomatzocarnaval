@@ -3,6 +3,7 @@ from io import BytesIO
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect, abort, send_file
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
+from flask_analytics import Analytics
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -30,6 +31,9 @@ app.secret_key = '5x07x0bOx84x0cx99x8bxf7xf8xbdxcexd3xd9xfax16x19x89x01xc7W6'
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hrvmzdcoakadyp:19c0494b83012af8c82731022251bbebeeb0ebc4bcf6e3610df5233537316dc1@ec2-75-101-142-182.compute-1.amazonaws.com:5432/dcdlstuh600udj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+Analytics(app)
+
+app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'UA-92539436-1'
 
 #----------------------------------------
 # User Table

@@ -5,6 +5,7 @@ click==6.7
 docutils==0.13.1
 facebook-sdk==2.0.0
 Flask==0.10.1
+Flask-Analytics==0.6.0
 Flask-Boto3==0.2.2
 Flask-OAuth==0.12
 Flask-OAuthlib==0.9.3
