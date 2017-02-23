@@ -4,6 +4,11 @@
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8" />
         <title>Tomatzo - Carnaval 2017</title>
+        <meta property="og:url"           content="http://www.tomatzocarnaval.com/sucess" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="Tomatzo Carnaval" />
+        <meta property="og:description"   content="Crie e compartilhe o seu cronograma de blocos de carnaval de Brasília" />
+        <meta property="og:image"         content="{{ src }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
         <link rel="apple-touch-icon" href="{{ url_for('static', filename='pages/ico/60.png')}}">
         <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='pages/ico/76.png')}}">
@@ -30,6 +35,17 @@
       <![endif]-->
       </head>
       <body class="fixed-header ">
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+
         <div class="page-container ">
           <div class="header ">
             <!-- START MOBILE CONTROLS -->
@@ -88,6 +104,7 @@
                       <div class="col-md-4 col-md-offset-4">
                       <br>
                       <button class="btn btn-block btn-info btn-facebook" type="button"><span class="pull-left"><i class="fa fa-facebook"></i></span><span class="bold">Compartilhe no Facebook</span></button>
+                      <div class="fb-share-button" data-href="http://www.tomatzocarnaval.com/sucess" data-layout="button_count"></div>
                       <br>
                       <button class="btn btn-block btn-info btn-instagram" type="button"><span class="pull-left"><i class="fa fa-instagram"></i></span><span class="bold">Compartilhe no Instagram</span></button>
                       <br>
