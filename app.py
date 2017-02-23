@@ -188,7 +188,7 @@ def generate_image():
 
     return redirect(url_for('sucess'))
 
-@app.route('some')
+@app.route('/some')
 def serve_img():
     img = Image.new("RGBA",(300,400),(255,255,255))
     return serve_pil_image(img)
