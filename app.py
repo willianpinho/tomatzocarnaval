@@ -1,4 +1,4 @@
-import os, boto3, StringIO, re, urllib
+import os, boto3, StringIO, re, urllib, cStringIO
 from io import BytesIO
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect, abort, send_file
 from flask_oauth import OAuth
