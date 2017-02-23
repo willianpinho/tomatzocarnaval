@@ -2906,7 +2906,8 @@ hr.dotted {
   transition: color 0.1s linear 0s, background-color 0.1s linear 0s, opacity 0.2s linear 0s !important;
 }
 .btn:hover {
-  background-color: #fafafa;
+  background-color: #075e54;
+  color: white;
   border: 1px solid rgba(98, 98, 98, 0.27);
 }
 .btn.active {
@@ -3099,8 +3100,8 @@ fieldset[disabled] .btn-complete.active {
 .btn-info:active:focus,
 .btn-info:active:hover,
 .open .dropdown-toggle.btn-info {
-  background-color: #3b5998;
-  border-color: #3b5998;
+  background-color: #833ab4;
+  border-color: #833ab4;
   color: #fff;
 }
 .btn-info.hover,
