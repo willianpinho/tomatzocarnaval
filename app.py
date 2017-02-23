@@ -2,6 +2,10 @@ import os
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+from PIL import ImageOps
 
 DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
@@ -159,7 +163,19 @@ def sucess():
 
 @app.route('/generate_image')
 def generate_image():
-    print("Oi")
+    me = facebook.get('me?fields=id,name,picture.height(300),email')   
+    email = me.data['email']
+    user = User.query.filter_by(email=email).first()
+    
+    fonts_path = os.path.join(app.root_path, 'static'), 'fonts/roboto_slab'
+    background = Image.open(os.path.join(app.root_path, 'static'), 'img/fundo_carna_tomatzo.png')
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype(os.path.join(fonts_path, 'RobotoSlab-Regular.ttf'), 24)
+
+    draw.text((220, 325),blocos[0]["nome"],(0,0,0),font=font)
+    pathToSave = os.path.join(app.root_path, 'generated')
+    img.save(pathToSave, 'sample-out.png')  
+
     return redirect(url_for('sucess'))
 
 #----------------------------------------
