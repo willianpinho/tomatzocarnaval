@@ -14,7 +14,7 @@
         <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='pages/ico/76.png')}}">
         <link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename='pages/ico/120.png')}}">
         <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename='pages/ico/152.png')}}">
-        <link rel="icon" type="image/x-icon" href="static/icofavicon.ico" />
+        <link rel="icon" type="image/x-icon" href="static/ico/favicon.ico" />
         <link rel="apple-touch-icon" sizes="57x57" href="static/ico/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="static/ico/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="static/ico/apple-icon-72x72.png">
@@ -52,14 +52,14 @@
       <![endif]-->
       </head>
       <body class="fixed-header ">
-        <script>
-        document.getElementById('share-btn').onclick = function() {
-          FB.ui({
-            method: 'share',
-            display: 'popup',
-            href: 'http://www.tomatzocarnaval.com/',
-          }, function(response){});
-        }
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8&appId=1276374105779390";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
         </script>
 
         <div class="page-container ">
@@ -122,6 +122,8 @@
                       
                       <button id="share-btn" class="btn btn-block btn-info btn-facebook" type="button"><span class="pull-left"><i class="fa fa-facebook"></i></span><span class="bold">Compartilhe no Facebook</span></button>
                       <br>
+
+                      <div class="fb-share-button" data-href="http://www.tomatzocarnaval.com/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.tomatzocarnaval.com%2F&amp;src=sdkpreparse">Share</a></div>
                       
                       <p>Ou salve a imagem e compartilhe no seu <strong>Instagram</strong> ou <strong>Whatsapp</strong> :)</p>
                       
@@ -161,11 +163,11 @@
                 <div class="container-fluid">
                   <div class="copyright sm-text-center">
                     <p class="small no-margin pull-left sm-pull-reset">
-                      <a href="http://www.tomatzo.com.br" target="blank"><span class="font-montserrat">Tomatzo</span>.</a>
+                      <a href="https://www.facebook.com/Tomatzo/" target="blank"><span class="font-montserrat">Tomatzo</span>.</a>
                       <span class="hint-text">Todos os Direitos Reservados </span>
                     </p>
                     <p class="small no-margin pull-right sm-pull-reset">
-                      <a href="http://willianpinho.com">Desenvolvido por <span class="hint-text">Willian Pinho</span></a>
+                      <a href="http://willianpinho.com" target="blank">Desenvolvido por <span class="hint-text">Willian Pinho</span></a>
                     </p>
                     <div class="clearfix"></div>
                   </div>
