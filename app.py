@@ -1,4 +1,4 @@
-import os
+import os, boto3
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
