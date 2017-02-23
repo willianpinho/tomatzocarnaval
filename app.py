@@ -173,7 +173,7 @@ def generate_image():
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
 
     draw.text((220, 325), user.segunda ,(0,0,0),font=font)
-    background.save('generated/sample-out.png')  
+    background.save('/generated/sample-out.png', 'PNG')  
 
     return redirect(url_for('sucess'))
 
