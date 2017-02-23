@@ -1,6 +1,6 @@
 import os, boto3, StringIO, re, urllib, cStringIO
 from io import BytesIO
-from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect, abort, send_file, Response
+from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect, abort, send_file
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
 from PIL import Image
@@ -223,10 +223,7 @@ def create(facebook_id):
     image.save(byte_io, 'PNG')
     byte_io.seek(0)
 
-    response = response(byte_io.seek(0))
-    response.headers['Content-Type'] = 'image/jpeg'
-    response.headers['Content-Disposition'] = 'attachment; filename=img.png'
-    return response
+    return send_file(byte_io, mimetype='image/png')
 
 @app.route('/sucess')
 def sucess():
