@@ -202,7 +202,7 @@ def serve_img():
     user = User.query.filter_by(email=email).first()
   
     url = user.facebook_img
-    r = requests.get(url)
+    r = request.get(url)
 
     user_img = Image.open(r)
     position = (0,0)
