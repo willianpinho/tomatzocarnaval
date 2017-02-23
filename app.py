@@ -168,7 +168,7 @@ def generate_image():
     user = User.query.filter_by(email=email).first()
     
     fonts_path = os.path.join(app.root_path, 'static'), 'fonts/roboto_slab'
-    background = Image.open(os.path.join(app.root_path, 'static'), 'img/fundo_carna_tomatzo.png')
+    background = Image.open('static/mg/fundo_carna_tomatzo.png')
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype(os.path.join(fonts_path, 'RobotoSlab-Regular.ttf'), 24)
 
