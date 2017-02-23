@@ -187,6 +187,12 @@ def generate_image():
     background.save('static/sample-out.png')
 
     return redirect(url_for('sucess'))
+    
+def serve_pil_image(pil_img):
+    img_io = StringIO()
+    pil_img.save(img_io, 'JPEG', quality=70)
+    img_io.seek(0)
+    return send_file(img_io, mimetype='image/jpeg')
 
 @app.route('/some')
 def serve_img():
