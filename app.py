@@ -172,9 +172,8 @@ def generate_image():
     draw = ImageDraw.Draw(background)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
 
-    draw.text((220, 325),blocos[0]["nome"],(0,0,0),font=font)
-    pathToSave = os.path.join(app.root_path, 'generated')
-    background.save(pathToSave, 'sample-out.png')  
+    draw.text((220, 325), user.segunda ,(0,0,0),font=font)
+    background.save('generated/sample-out.png')  
 
     return redirect(url_for('sucess'))
 
