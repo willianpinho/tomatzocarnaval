@@ -169,7 +169,7 @@ def create_calendar():
         return render_template('generate.html')
  
 @app.route('/create')
-def serve_img():
+def create():
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
     email = me.data['email']
     user = User.query.filter_by(email=email).first()
