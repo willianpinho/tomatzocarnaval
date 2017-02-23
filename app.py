@@ -216,8 +216,9 @@ def serve_img():
 
     file = cStringIO.StringIO(response.read())
     user_img = Image.open(file)
-
-    position = (0,0)
+    user_img_size = (150,150)
+    user_img_position = (320,30)
+    user_img = user_img.resize(user_img_size, Image.ANTIALIAS)
     #Extract digits from request variable e.g 200x300
     dimensions = '800x800'
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
@@ -230,7 +231,7 @@ def serve_img():
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
 
-    image.paste(user_img, (0,0))
+    image.paste(user_img, user_img_position)
 
     #Position text roughly in the center
     draw.text((220, 325),user.sexta,(0,0,0),font=font)
