@@ -126,7 +126,7 @@ def facebook_authorized(resp):
       db.session.add(user)
       db.session.commit()
 
-    return redirect(url_for('generate'))
+    return redirect(url_for('generate',facebook_id=facebook_id))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
