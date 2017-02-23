@@ -177,11 +177,12 @@ def page_not_found(e):
 def generate(facebook_id):
     return render_template('generate.html')
 
-@app.route('/create_calendar/<facebook_id>/', methods=['GET', 'POST'])
-def create_calendar(facebook_id):
-    facebook_id = request.args.get("facebook_id")
+@app.route('/create_calendar', methods=['GET', 'POST'])
+def create_calendar():
     if request.method == 'POST':
-        user = User.query.filter_by(facebook_id=facebook_id).first()
+        me = facebook.get('me?fields=id,name,picture.height(300),email')   
+        email = me.data['email']
+        user = User.query.filter_by(email=email).first()
         user.sexta = request.form['sexta']
         user.sabado = request.form['sabado']
         user.domingo = request.form['domingo']
