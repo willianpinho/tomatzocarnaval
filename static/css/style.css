@@ -10,7 +10,19 @@
 	color: #fff;
 }
 
+.btn-whatsapp:hover {
+	background-color: #075e54;
+	border-color: #075e54;
+	color: #fff;
+}
+
 .btn-instagram {
+	background-color: #833ab4;
+	border-color: #833ab4;
+	color: #fff;
+}
+
+.btn-instagram:hover {
 	background-color: #833ab4;
 	border-color: #833ab4;
 	color: #fff;
