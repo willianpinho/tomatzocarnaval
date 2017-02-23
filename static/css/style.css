@@ -27,3 +27,15 @@
 	border-color: #833ab4;
 	color: #fff;
 }
+
+.btn-compartilhar {
+	color: #fff;
+	background-color: #6d5cae;
+	border-color: #6d5cae;
+}
+
+.btn-compartilhar:hover {
+	background-color: #3b5998;
+	border-color: #3b5998;
+	color: #fff;
+}
