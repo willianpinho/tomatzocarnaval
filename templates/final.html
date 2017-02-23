@@ -35,15 +35,14 @@
       <![endif]-->
       </head>
       <body class="fixed-header ">
-        <!-- Load Facebook SDK for JavaScript -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        <script>
+        document.getElementById('share-btn').onclick = function() {
+          FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: 'http://www.tomatzocarnaval.com/',
+          }, function(response){});
+        }
         </script>
 
         <div class="page-container ">
@@ -104,9 +103,7 @@
                       <div class="col-md-4 col-md-offset-4">
                       <br>
                       
-                      <div class="fb-share-button" data-href="http://www.tomatzocarnaval.com/sucess" data-layout="button_count">
-                        <button class="btn btn-block btn-info btn-facebook" type="button"><span class="pull-left"><i class="fa fa-facebook"></i></span><span class="bold">Compartilhe no Facebook</span></button>
-                      </div>
+                      <button id="share-btn" class="btn btn-block btn-info btn-facebook" type="button"><span class="pull-left"><i class="fa fa-facebook"></i></span><span class="bold">Compartilhe no Facebook</span></button>
                       <br>
                       <button class="btn btn-block btn-info btn-instagram" type="button"><span class="pull-left"><i class="fa fa-instagram"></i></span><span class="bold">Compartilhe no Instagram</span></button>
                       <br>
