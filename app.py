@@ -201,10 +201,22 @@ def serve_img():
     email = me.data['email']
     user = User.query.filter_by(email=email).first()
   
-    url = user.facebook_img
-    r = request.get(url)
+    formats = {
+        'image/jpeg': 'JPEG',
+        'image/png': 'PNG',
+        'image/gif': 'GIF'
+    }
 
-    user_img = Image.open(r)
+    response = urllib.urlopen(user.facebook_img)
+    image_type = response.info().get('Content-Type')
+    try:
+        format = formats[image_type]
+    except KeyError:
+        raise ValueError('Not a supported image format')
+
+    file = cStringIO.StringIO(response.read())
+    user_img = Image.open(file)
+
     position = (0,0)
     #Extract digits from request variable e.g 200x300
     dimensions = '800x800'
