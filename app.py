@@ -95,37 +95,61 @@ def login():
     else:
         return render_template('index.html')
 
-
-
 @app.route('/login/authorized')
 @facebook.authorized_handler
 def facebook_authorized(resp):
     if resp is None:
-        abort(404)
+        error = 'Access denied: reason=%s error=%s' %(
+            request.args['error_reason'],
+            request.args['error_descriptions']
+        )
         return render_template('404.html'), 404
-    else: 
-        session['logged_in'] = True
-        session['facebook_token'] = (resp['access_token'], '')
 
-        me = facebook.get('me?fields=id,name,picture.height(300),email')
-        name = me.data['name']
-        facebook_id = me.data['id']
-        facebook_img = me.data['picture']['data']['url']
-        email = me.data['email']
-        logged = 'true'
-        facebook_token = resp['access_token']
-        sexta = ''
-        sabado = ''
-        domingo = ''
-        segunda = ''
-        terca = ''
+    session['logged_in'] = True
+    session['facebook_token'] = (resp['access_token'], '')
 
-        if not db.session.query(User).filter(User.email == email).count():
-          user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
-          db.session.add(user)
-          db.session.commit()
+    me = facebook.get('me?fields=id,name,picture.height(300),email')
+    name = me.data['name']
+    facebook_id = me.data['id']
+    facebook_img = me.data['picture']['data']['url']
+    email = me.data['email']
+    logged = 'true'
+    facebook_token = resp['access_token']
+    sexta = ''
+    sabado = ''
+    domingo = ''
+    segunda = ''
+    terca = ''
 
-        return redirect(url_for('generate',facebook_id=facebook_id))
+    if not db.session.query(User).filter(User.email == email).count():
+      user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
+      db.session.add(user)
+      db.session.commit()
+
+    return redirect(url_for('generate',facebook_id=facebook_id))
+
+@app.route('/facebook/translate', methods=['GET'])
+def facebook_translate():
+  # Facebook responds with the access token as ?#access_token, 
+  # rather than ?access_token, which is only accessible to the browser.
+  # This part is where things get really, really dumb.
+  return '''  <script type="text/javascript">
+    var token = window.location.href.split("access_token=")[1]; 
+    window.location = "/facebook/callback?access_token=" + token;
+  </script> '''
+
+@app.route('/facebook/callback', methods=['GET', 'POST'])
+def facebook_callback():
+    access_token = request.args.get("access_token")
+
+    if access_token == "undefined":
+        flash("You denied the request to sign in.", "error")
+        return redirect(url_for('index'))
+
+    return redirect(url_for('login'))
+
+
+
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
