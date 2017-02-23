@@ -219,7 +219,8 @@ def serve_img():
     user_img_size = (150,150)
     user_img_position = (325,30)
     user_img = user_img.resize(user_img_size, Image.ANTIALIAS)
-    
+ 
+
     #Extract digits from request variable e.g 200x300
     dimensions = '800x800'
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
@@ -235,7 +236,8 @@ def serve_img():
     image.paste(user_img, user_img_position)
 
     #Position text roughly in the center
-    draw.text((325, 325),user.name,(0,0,0),font=font)
+    w,h = font.getsize(user.name)
+    draw.text(((800-w)/2,190),user.name,(0,0,0),font=font)
 
     draw.text((220, 325),user.sexta,(0,0,0),font=font)
     draw.text((220, 370),user.sabado,(0,0,0),font=font)
