@@ -164,11 +164,14 @@ def create_calendar():
         user.segunda = request.form['segunda']
         user.terca = request.form['terca']
         db.session.commit()
-        return redirect(url_for('sucess'))
+
+        facebook_id = user.facebook_id
+        return redirect(url_for('create', facebook_id=facebook_id))
     else:
         return render_template('generate.html')
  
-def create():
+@app.route('/create/<facebook_id>.png')
+def create(facebook_id):
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
     email = me.data['email']
     user = User.query.filter_by(email=email).first()
@@ -220,12 +223,14 @@ def create():
     image.save(byte_io, 'PNG')
     byte_io.seek(0)
 
-    return send_file(byte_io, mimetype='image/png')
+    response = make_response(byte_io.seek(0))
+    response.headers['Content-Type'] = 'image/jpeg'
+    response.headers['Content-Disposition'] = 'attachment; filename=img.png'
+    return response
 
 @app.route('/sucess')
 def sucess():
-    image = create()
-    return render_template('sucess.html', image=image)
+    return render_template('sucess.html')
 
 
 #----------------------------------------
