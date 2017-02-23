@@ -201,6 +201,11 @@ def serve_img():
     email = me.data['email']
     user = User.query.filter_by(email=email).first()
   
+    url = user.facebook_img
+    r = requests.get(url)
+
+    user_img = Image.open(r)
+    position = (0,0)
     #Extract digits from request variable e.g 200x300
     dimensions = '800x800'
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
@@ -212,6 +217,8 @@ def serve_img():
     image = Image.open("static/img/fundo_carna_tomatzo.png")
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
+
+    img.paste(user_img, (0,0))
 
     #Position text roughly in the center
     draw.text((220, 325),user.sexta,(0,0,0),font=font)
