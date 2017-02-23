@@ -101,32 +101,31 @@ def login():
 @facebook.authorized_handler
 def facebook_authorized(resp):
     if resp is None:
-        return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
-        )
-    session['logged_in'] = True
-    session['facebook_token'] = (resp['access_token'], '')
+        abort(404)
+        return render_template('404.html'), 404
+    else: 
+        session['logged_in'] = True
+        session['facebook_token'] = (resp['access_token'], '')
 
-    me = facebook.get('me?fields=id,name,picture.height(300),email')
-    name = me.data['name']
-    facebook_id = me.data['id']
-    facebook_img = me.data['picture']['data']['url']
-    email = me.data['email']
-    logged = 'true'
-    facebook_token = resp['access_token']
-    sexta = ''
-    sabado = ''
-    domingo = ''
-    segunda = ''
-    terca = ''
+        me = facebook.get('me?fields=id,name,picture.height(300),email')
+        name = me.data['name']
+        facebook_id = me.data['id']
+        facebook_img = me.data['picture']['data']['url']
+        email = me.data['email']
+        logged = 'true'
+        facebook_token = resp['access_token']
+        sexta = ''
+        sabado = ''
+        domingo = ''
+        segunda = ''
+        terca = ''
 
-    if not db.session.query(User).filter(User.email == email).count():
-      user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
-      db.session.add(user)
-      db.session.commit()
+        if not db.session.query(User).filter(User.email == email).count():
+          user = User(name= name, facebook_id=facebook_id, facebook_img=facebook_img, email=email, logged=logged, facebook_token=facebook_token, sexta=sexta, sabado=sabado, domingo=domingo, segunda=segunda, terca=terca)
+          db.session.add(user)
+          db.session.commit()
 
-    return redirect(url_for('generate',facebook_id=facebook_id))
+        return redirect(url_for('generate',facebook_id=facebook_id))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
