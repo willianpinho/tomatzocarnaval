@@ -198,6 +198,7 @@ def serve_pil_image(pil_img):
 @app.route('/create')
 def serve_img():
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
+    email = me.data['email']
     user = User.query.filter_by(email=email).first()
   
     #Extract digits from request variable e.g 200x300
@@ -211,7 +212,7 @@ def serve_img():
     image = Image.open("static/img/fundo_carna_tomatzo.png")
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
-    
+
     #Position text roughly in the center
     draw.text((220, 325),user.sexta,(0,0,0),font=font)
     draw.text((220, 370),user.sabado,(0,0,0),font=font)
