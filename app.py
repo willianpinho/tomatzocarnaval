@@ -150,8 +150,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.route('/generate')
-def generate():
+@app.route('/generate/<facebook_id>')
+def generate(facebook_id):
     return render_template('generate.html')
 
 @app.route('/create_calendar', methods=['GET', 'POST'])
