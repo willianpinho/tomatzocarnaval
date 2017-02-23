@@ -7,6 +7,10 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from PIL import ImageOps
 
+from tempfile import NamedTemporaryFile
+from shutil import copyfileobj
+from os import remove
+
 DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
 FACEBOOK_APP_SECRET = 'f5b0355b0cbc57a454468fb48e06ab99'
@@ -183,6 +187,11 @@ def generate_image():
     background.save('static/sample-out.png')
 
     return redirect(url_for('sucess'))
+
+@app.route('some')
+def serve_img():
+    img = Image.new("RGBA",(300,400),(255,255,255))
+    return serve_pil_image(img)
 
 #----------------------------------------
 # launch
