@@ -225,10 +225,7 @@ def serve_img():
 
 @app.route('/sucess')
 def sucess():
-    image = request.get('/create')
-
-    # return render_template('sucess.html')
-    return image
+    return render_template('sucess.html')
 
 
 #----------------------------------------
