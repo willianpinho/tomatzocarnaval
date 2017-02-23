@@ -177,8 +177,9 @@ def page_not_found(e):
 def generate(facebook_id):
     return render_template('generate.html')
 
-@app.route('/create_calendar', methods=['GET', 'POST'])
-def create_calendar():
+@app.route('/create_calendar/<facebook_id>/', methods=['GET', 'POST'])
+def create_calendar(facebook_id):
+    facebook_id = request.args.get("facebook_id")
     if request.method == 'POST':
         user = User.query.filter_by(facebook_id=facebook_id).first()
         user.sexta = request.form['sexta']
