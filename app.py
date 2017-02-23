@@ -195,16 +195,17 @@ def serve_pil_image(pil_img):
     img_io.seek(0)
     return send_file(img_io, mimetype='image/jpeg')
 
-@app.route('/<dimensions>')
-def serve_img(dimensions):
+@app.route('/create')
+def serve_img():
     #Extract digits from request variable e.g 200x300
+    dimensions = '800x800'
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
     if len(sizes) != 2:
       abort(400)
     width = sizes[0]
     height = sizes[1]
     
-    image = Image.new("RGB", (width, height))
+    image = Image.open("fundo_carna_tomatzo.png")
     draw = ImageDraw.Draw(image)
     
     #Position text roughly in the center
