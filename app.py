@@ -1,5 +1,6 @@
-import os, boto3, StringIO
-from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
+import os, boto3, StringIO, re
+from io import BytesIO
+from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect, abort, send_file
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
 from PIL import Image
@@ -194,10 +195,26 @@ def serve_pil_image(pil_img):
     img_io.seek(0)
     return send_file(img_io, mimetype='image/jpeg')
 
-@app.route('/some')
-def serve_img():
-    img = Image.new("RGBA",(300,400),(255,255,255))
-    return serve_pil_image(img)
+@app.route('/<dimensions>')
+def serve_img(<dimensions>):
+    #Extract digits from request variable e.g 200x300
+    sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
+    if len(sizes) != 2:
+      abort(400)
+    width = sizes[0]
+    height = sizes[1]
+    
+    image = Image.new("RGB", (width, height))
+    draw = ImageDraw.Draw(image)
+    
+    #Position text roughly in the center
+    draw.text((width/2 - 25, height/2 - 5), dimensions)
+
+    byte_io = BytesIO()
+    image.save(byte_io, 'PNG')
+    byte_io.seek(0)
+
+    return send_file(byte_io, mimetype='image/png')
 
 #----------------------------------------
 # launch
