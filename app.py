@@ -193,7 +193,7 @@ def create(facebook_id):
     file = cStringIO.StringIO(response.read())
     user_img = Image.open(file)
     user_img_size = (150,150)
-    user_img_position = (325,31)
+    user_img_position = (327,31)
     user_img = user_img.resize(user_img_size, Image.ANTIALIAS)
  
     #Extract digits from request variable e.g 200x300
