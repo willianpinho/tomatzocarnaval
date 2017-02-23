@@ -186,6 +186,8 @@ def generate_image():
     for bucket in s3.buckets.all():
             print(bucket.name)
 
+    background.save('static/sample-out.png')
+
     return redirect(url_for('sucess'))
 
 #----------------------------------------
