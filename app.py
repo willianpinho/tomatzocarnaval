@@ -205,7 +205,7 @@ def serve_img():
     width = sizes[0]
     height = sizes[1]
     
-    image = Image.open("fundo_carna_tomatzo.png")
+    image = Image.open("static/img/fundo_carna_tomatzo.png")
     draw = ImageDraw.Draw(image)
     
     #Position text roughly in the center
