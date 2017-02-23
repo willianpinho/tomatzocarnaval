@@ -251,9 +251,7 @@ def create(facebook_id):
 
 @app.route('/sucess/<facebook_id>')
 def sucess(facebook_id):
-    me = facebook.get('me?fields=id,name,picture.height(300),email') 
-    email = me.data['email']
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(facebook_id=facebook_id).first()
     src = 'http://www.tomatzocarnaval.com/create/' + user.facebook_id + '.png'
 
     return render_template('sucess.html', src=src)
