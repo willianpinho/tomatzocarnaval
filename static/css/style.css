@@ -30,8 +30,14 @@
 
 .btn-compartilhar {
 	color: #fff;
-	background-color: #6d5cae;
-	border-color: #6d5cae;
+	background-color: #3b5998;
+	border-color: #3b5998;
+}
+
+.btn-compartilha:active {
+	color: #fff;
+	background-color: #3b5998;
+	border-color: #3b5998;
 }
 
 .btn-compartilhar:hover {
