@@ -223,7 +223,7 @@ def create(facebook_id):
     image.save(byte_io, 'PNG')
     byte_io.seek(0)
 
-    response = flask.response(byte_io.seek(0))
+    response = response(byte_io.seek(0))
     response.headers['Content-Type'] = 'image/jpeg'
     response.headers['Content-Disposition'] = 'attachment; filename=img.png'
     return response
