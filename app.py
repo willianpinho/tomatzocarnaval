@@ -6,8 +6,6 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from PIL import ImageOps
-import Boto3
-
 
 DEBUG = True
 FACEBOOK_APP_ID = '1276374105779390'
@@ -182,10 +180,7 @@ def generate_image():
     draw = ImageDraw.Draw(background)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
     draw.text((220, 325), user.segunda ,(0,0,0),font=font)
-
-    for bucket in s3.buckets.all():
-            print(bucket.name)
-
+    
     background.save('static/sample-out.png')
 
     return redirect(url_for('sucess'))
