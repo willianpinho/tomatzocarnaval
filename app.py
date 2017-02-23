@@ -170,7 +170,7 @@ def generate_image():
     fonts_path = os.path.join(app.root_path, 'static'), 'fonts/roboto_slab'
     background = Image.open('static/img/fundo_carna_tomatzo.png')
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype(os.path.join(fonts_path, 'RobotoSlab-Regular.ttf'), 24)
+    font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
 
     draw.text((220, 325),blocos[0]["nome"],(0,0,0),font=font)
     pathToSave = os.path.join(app.root_path, 'generated')
