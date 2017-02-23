@@ -196,7 +196,7 @@ def serve_pil_image(pil_img):
     return send_file(img_io, mimetype='image/jpeg')
 
 @app.route('/<dimensions>')
-def serve_img(<dimensions>):
+def serve_img(dimensions):
     #Extract digits from request variable e.g 200x300
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
     if len(sizes) != 2:
