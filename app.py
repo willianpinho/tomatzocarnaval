@@ -231,7 +231,7 @@ def sucess():
     user = User.query.filter_by(email=email).first()
     src = 'http://www.tomatzocarnaval.com/create/' + user.facebook_id + '.png'
 
-    return render_template('sucess.html', {"data" : src})
+    return render_template('sucess.html', src=src)
 
 
 #----------------------------------------
