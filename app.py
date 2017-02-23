@@ -1,4 +1,4 @@
-import os, boto3
+import os, boto3, StringIO
 from flask import Flask, render_template, send_from_directory, url_for, session, request, redirect
 from flask_oauth import OAuth
 from flask_sqlalchemy import SQLAlchemy
@@ -187,7 +187,7 @@ def generate_image():
     background.save('static/sample-out.png')
 
     return redirect(url_for('sucess'))
-    
+
 def serve_pil_image(pil_img):
     img_io = StringIO()
     pil_img.save(img_io, 'JPEG', quality=70)
