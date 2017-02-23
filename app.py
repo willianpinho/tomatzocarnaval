@@ -166,7 +166,7 @@ def create_calendar():
         db.session.commit()
 
         facebook_id = user.facebook_id
-        return redirect(url_for('create', facebook_id=facebook_id))
+        return redirect(url_for('sucess'))
     else:
         return render_template('generate.html')
  
