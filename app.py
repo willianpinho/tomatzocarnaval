@@ -164,37 +164,10 @@ def create_calendar():
         user.segunda = request.form['segunda']
         user.terca = request.form['terca']
         db.session.commit()
-        return redirect(url_for('generate_image'))
+        return redirect(url_for('create'))
     else:
         return render_template('generate.html')
  
-
-@app.route('/sucess')
-def sucess():
-  return render_template('sucess.html')
-
-@app.route('/generate_image')
-def generate_image():
-    me = facebook.get('me?fields=id,name,picture.height(300),email')   
-    email = me.data['email']
-    user = User.query.filter_by(email=email).first()
-    
-    fonts_path = os.path.join(app.root_path, 'static'), 'fonts/roboto_slab'
-    background = Image.open('static/img/fundo_carna_tomatzo.png')
-    draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
-    draw.text((220, 325), user.segunda ,(0,0,0),font=font)
-
-    background.save('static/sample-out.png')
-
-    return redirect(url_for('sucess'))
-
-def serve_pil_image(pil_img):
-    img_io = StringIO()
-    pil_img.save(img_io, 'JPEG', quality=70)
-    img_io.seek(0)
-    return send_file(img_io, mimetype='image/jpeg')
-
 @app.route('/create')
 def serve_img():
     me = facebook.get('me?fields=id,name,picture.height(300),email') 
@@ -217,10 +190,9 @@ def serve_img():
     file = cStringIO.StringIO(response.read())
     user_img = Image.open(file)
     user_img_size = (150,150)
-    user_img_position = (325,30)
+    user_img_position = (325,31)
     user_img = user_img.resize(user_img_size, Image.ANTIALIAS)
  
-
     #Extract digits from request variable e.g 200x300
     dimensions = '800x800'
     sizes = [int(s) for s in re.findall(r'\d+', dimensions)]
@@ -250,6 +222,14 @@ def serve_img():
     byte_io.seek(0)
 
     return send_file(byte_io, mimetype='image/png')
+
+@app.route('/sucess')
+def sucess():
+    image = request.get('/create')
+
+    # return render_template('sucess.html')
+    return image
+
 
 #----------------------------------------
 # launch
