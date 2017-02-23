@@ -121,9 +121,7 @@ def facebook_authorized(resp):
       db.session.add(user)
       db.session.commit()
 
-    session['email'] = email
-
-    return redirect(url_for('generate', email=email))
+    return redirect(url_for('generate'))
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
@@ -147,9 +145,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.route('/generate/<email>')
-def generate(email):
-    session['email'] = email
+@app.route('/generate')
+def generate():
     return render_template('generate.html')
 
 @app.route('/create_calendar', methods=['GET', 'POST'])
