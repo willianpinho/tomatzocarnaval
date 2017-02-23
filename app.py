@@ -230,7 +230,7 @@ def serve_img():
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype('static/fonts/roboto_slab/RobotoSlab-Regular.ttf', 24)
 
-    img.paste(user_img, (0,0))
+    image.paste(user_img, (0,0))
 
     #Position text roughly in the center
     draw.text((220, 325),user.sexta,(0,0,0),font=font)
